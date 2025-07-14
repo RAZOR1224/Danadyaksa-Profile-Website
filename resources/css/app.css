@@ -1,0 +1,82 @@
+/* resources/css/app.css */
+
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    /* Your existing font configuration */
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /*
+    |--------------------------------------------------------------------------
+    | YOUR FULL COLOR PALETTE (Corrected with camelCase)
+    |--------------------------------------------------------------------------
+    */
+    --color-primaryDark: #1A237E;
+    /* Renamed from primary-dark */
+    --color-primary: #283593;
+    /* This one was fine */
+    --color-accent: #D4AF37;
+    /* This one was fine */
+    --color-surface: #f8f9fa;
+    /* This one was fine */
+    --color-textBase: #333333;
+    /* Renamed from text-base */
+    --color-textMuted: #6c757d;
+    /* Renamed from text-muted */
+}
+
+
+/* Define your custom keyframes directly as raw CSS */
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Optional: Create a custom utility class if you prefer a simpler class name in your HTML */
+.animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Global styles (Corrected with updated theme() calls)
+|--------------------------------------------------------------------------
+*/
+body {
+    background-color: theme('colors.surface');
+    color: theme('colors.textBase');
+    /* Updated to textBase */
+}
+
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Style for header on scroll (added by JS) */
+.header-scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero section specific styles for better visual */
+#home {
+    background: linear-gradient(to right, theme('colors.primary'), theme('colors.primaryDark'));
+    /* Updated to primaryDark */
+    position: relative;
+    overflow: hidden;
+}
