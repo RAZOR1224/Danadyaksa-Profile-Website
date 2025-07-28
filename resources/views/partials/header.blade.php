@@ -27,7 +27,6 @@
                 <li><a href="{{ route('team', app()->getLocale()) }}" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }" class="font-medium transition-colors">{{ __('nav.team') }}</a></li>
                 <li><a href="{{ route('articles', app()->getLocale()) }}" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }" class="font-medium transition-colors">{{ __('nav.articles') }}</a></li>
                 
-                {{-- UPDATED: Miscellaneous Dropdown --}}
                 <li class="relative" x-data="{ miscOpen: false }">
                     <button @click="miscOpen = !miscOpen" class="flex items-center font-medium transition-colors" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }">
                         <span>{{ __('nav.misc') }}</span>
@@ -53,6 +52,20 @@
                     <a href="{{ route(request()->route()->getName() ?: 'home', 'id') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Indonesia (ID)</a>
                 </div>
             </div>
+
+            <div class="border-l h-6" :class="{'border-gray-300': scrolled, 'border-white/20': !scrolled}"></div>
+
+            @auth
+                <div class="flex items-center space-x-4">
+                    <a href="{{ url('/dashboard') }}" class="font-medium" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }">Dashboard</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="font-medium" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }">Logout</button>
+                    </form>
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="font-medium" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }">Login</a>
+            @endguest
         </div>
 
         {{-- Mobile Menu Button --}}
@@ -65,25 +78,25 @@
     {{-- Mobile Dropdown Menu --}}
     <div x-show="open" @click.away="open = false" class="md:hidden bg-white shadow-lg">
         <ul class="py-2 text-gray-700">
-            {{-- Standard Links --}}
+            {{-- Your existing links... --}}
             <li><a href="{{ route('home', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.home') }}</a></li>
             <li><a href="{{ route('about', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.about') }}</a></li>
-            <li><a href="{{ route('services', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.services') }}</a></li>
-            <li><a href="{{ route('team', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.team') }}</a></li>
-            <li><a href="{{ route('articles', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.articles') }}</a></li>
-            <li><a href="{{ route('contact', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.contact') }}</a></li>
-            
-            {{-- UPDATED: Miscellaneous Links for Mobile --}}
-            <hr class="my-2">
-            <li class="px-4 py-2 text-sm text-gray-500">{{ __('nav.misc') }}</li>
-            <li><a href="{{ route('business-intelligence', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.bi') }}</a></li>
-            <li><a href="{{ route('service-estimation-time', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.set') }}</a></li>
+            {{-- ... etc --}}
 
-            {{-- Language options --}}
+            {{-- Auth links for Mobile --}}
             <hr class="my-2">
-            <li class="px-4 py-2 text-sm text-gray-500">Switch Language:</li>
-            <li><a href="{{ route(request()->route()->getName() ?: 'home', 'en') }}" class="block px-4 py-2 hover:bg-gray-100 @if(app()->getLocale() == 'en') font-bold text-primary @endif">English (EN)</a></li>
-            <li><a href="{{ route(request()->route()->getName() ?: 'home', 'id') }}" class="block px-4 py-2 hover:bg-gray-100 @if(app()->getLocale() == 'id') font-bold text-primary @endif">Indonesia (ID)</a></li>
+            @auth
+                <li><a href="{{ url('/dashboard') }}" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type-="submit" class="w-full text-left block px-4 py-2 hover:bg-gray-100">Logout</button>
+                    </form>
+                </li>
+            @else
+                <li><a href="{{ route('login') }}" class="block px-4 py-2 hover:bg-gray-100">Login</a></li>
+                <li><a href="{{ route('register') }}" class="block px-4 py-2 hover:bg-gray-100">Register</a></li>
+            @endauth
         </ul>
     </div>
 </header>

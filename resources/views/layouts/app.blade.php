@@ -31,7 +31,9 @@
         @include('partials.header')
     </div>
     
-<main>
+    {{-- This <main> tag is now clean. It has NO container or padding. --}}
+    {{-- This allows your page content from home.blade.php to be full-width. --}}
+    <main>
         @yield('content')
     </main>
 

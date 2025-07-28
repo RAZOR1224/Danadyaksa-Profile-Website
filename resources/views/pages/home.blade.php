@@ -140,21 +140,43 @@
         </div>
     </section>
 
-    {{-- 5. Trusted By / Client Logos --}}
-    <section class="bg-surface py-16 md:py-24">
-        <div class="container mx-auto">
-            <h3 class="text-center text-2xl font-bold text-gray-800 mb-12 px-4">{{ __('home.trusted_title') }}</h3>
-            <div class="swiper logo-swiper">
-                <div class="swiper-wrapper items-center">
-                    <div class="swiper-slide"><img src="{{ asset('images/logo-placeholder-1.png') }}" alt="Client Logo 1" class="h-12 mx-auto"></div>
-                    <div class="swiper-slide"><img src="{{ asset('images/logo-placeholder-2.png') }}" alt="Client Logo 2" class="h-12 mx-auto"></div>
-                    <div class="swiper-slide"><img src="{{ asset('images/logo-placeholder-3.png') }}" alt="Client Logo 3" class="h-14 mx-auto"></div>
-                    <div class="swiper-slide"><img src="{{ asset('images/logo-placeholder-4.png') }}" alt="Client Logo 4" class="h-12 mx-auto"></div>
-                    <div class="swiper-slide"><img src="{{ asset('images/logo-placeholder-5.png') }}" alt="Client Logo 5" class="h-10 mx-auto"></div>
+{{-- 5. Trusted By / Client Logos --}}
+<section class="bg-surface py-12">
+    <div class="container mx-auto">
+        <h3 class="text-center text-2xl font-bold text-gray-800 mb-12 px-4">{{ __('home.trusted_title') }}</h3>
+        
+        <div class="swiper logo-swiper overflow-hidden">
+            <div class="swiper-wrapper items-center">
+
+                {{-- The height of each slide has been increased to h-24 to make logos bigger --}}
+                <div class="swiper-slide h-24 flex justify-center items-center">
+                    <img src="{{ asset('images/logo-placeholder-1.png') }}" alt="Client Logo 1" class="max-h-full max-w-full object-contain">
                 </div>
+                <div class="swiper-slide h-24 flex justify-center items-center">
+                    <img src="{{ asset('images/logo-placeholder-2.png') }}" alt="Client Logo 2" class="max-h-full max-w-full object-contain">
+                </div>
+                <div class="swiper-slide h-24 flex justify-center items-center">
+                    <img src="{{ asset('images/logo-placeholder-3.png') }}" alt="Client Logo 3" class="max-h-full max-w-full object-contain">
+                </div>
+                <div class="swiper-slide h-24 flex justify-center items-center">
+                    <img src="{{ asset('images/logo-placeholder-4.png') }}" alt="Client Logo 4" class="max-h-full max-w-full object-contain">
+                </div>
+                <div class="swiper-slide h-24 flex justify-center items-center">
+                    <img src="{{ asset('images/logo-placeholder-5.png') }}" alt="Client Logo 5" class="max-h-full max-w-full object-contain">
+                </div>
+                
+                {{-- Duplicated slides for a seamless loop --}}
+                <div class="swiper-slide h-24 flex justify-center items-center">
+                    <img src="{{ asset('images/logo-placeholder-1.png') }}" alt="Client Logo 1" class="max-h-full max-w-full object-contain">
+                </div>
+                <div class="swiper-slide h-24 flex justify-center items-center">
+                    <img src="{{ asset('images/logo-placeholder-2.png') }}" alt="Client Logo 2" class="max-h-full max-w-full object-contain">
+                </div>
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     {{-- 6. Location / Map Section --}}
     <section id="location" class="bg-white py-16 md:py-24">
@@ -219,20 +241,36 @@
     {{-- This script enables the smooth collapse/expand animation for the accordion --}}
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     
-    {{-- This script initializes the logo carousel --}}
+    {{-- CORRECTED SCRIPT for the logo carousel --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const swiper = new Swiper('.logo-swiper', {
                 loop: true,
-                slidesPerView: 'auto',
-                spaceBetween: 60,
+                // How much space is between the logos
+                spaceBetween: 30,
+                // Continuously scroll
                 autoplay: {
                     delay: 1,
                     disableOnInteraction: false,
                 },
                 speed: 4000,
                 grabCursor: true,
-                freeMode: true,
+
+                // --- FIXED ---
+                // Set how many logos to show at once for different screen sizes
+                slidesPerView: 3, // For mobile screens
+                breakpoints: {
+                    // when window width is >= 640px
+                    640: {
+                      slidesPerView: 4,
+                      spaceBetween: 40
+                    },
+                    // when window width is >= 1024px
+                    1024: {
+                      slidesPerView: 5,
+                      spaceBetween: 50
+                    }
+                }
             });
         });
     </script>

@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Team;
+use App\Models\Article;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Membuat 1 user utama yang bisa Anda gunakan untuk login
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin Danadyaksa',
+            'email' => 'admin@danadyaksa08.com',
         ]);
+
+        // Membuat 5 anggota tim menggunakan TeamFactory
+        Team::factory()->count(5)->create();
+
+        // Membuat 12 artikel menggunakan ArticleFactory
+        Article::factory()->count(12)->create();
     }
 }

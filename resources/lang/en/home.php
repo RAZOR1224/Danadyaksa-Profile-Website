@@ -44,7 +44,7 @@ return [
     'why_3_desc' => 'We prioritize your goals to deliver practical and effective solutions.',
 
     // Trusted By Section
-    'trusted_title' => 'Trusted By Companies Across The Nation',
+    'trusted_title' => 'Our Partners',
 
     // Location Section
     'location_title' => 'Our Location',

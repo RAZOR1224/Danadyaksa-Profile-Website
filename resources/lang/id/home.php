@@ -44,7 +44,7 @@ return [
     'why_3_desc' => 'Kami memprioritaskan tujuan Anda untuk memberikan solusi yang praktis dan efektif.',
 
     // Trusted By Section
-    'trusted_title' => 'Dipercaya oleh Perusahaan di Seluruh Negeri',
+    'trusted_title' => 'Rekan Kerja Kami',
 
     // Location Section
     'location_title' => 'Lokasi Kami',

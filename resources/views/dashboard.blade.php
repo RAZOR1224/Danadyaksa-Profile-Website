@@ -3,13 +3,63 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="container mx-auto px-6 py-12">
-    <div class="bg-white p-8 rounded-lg shadow-lg">
-        <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <div class="mt-4 border-t pt-4">
-            <p class="text-lg text-gray-700">Welcome back, {{ Auth::user()->name }}!</p>
-            <p class="mt-2 text-gray-600">You are logged in.</p>
+
+    {{-- 
+        This first section creates a header for the dashboard page.
+        The top padding (pt-32) is essential to push the content down below your fixed header.
+    --}}
+<section class="bg-primary pt-32 pb-10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-white">
+                Dashboard
+            </h1>
         </div>
-    </div>
-</div>
+    </section>
+
+    {{-- Main Dashboard Content --}}
+    <section class="pb-16 md:pb-24 bg-surface">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            
+            {{-- Welcome Message --}}
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg mb-6">
+                <div class="p-6 text-gray-900">
+                    Welcome back, **{{ Auth::user()->name }}**!
+                </div>
+            </div>
+
+            {{-- Stats Cards --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-500">Total Articles</h3>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">{{ \App\Models\Article::count() }}</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-500">Total Team Members</h3>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">{{ \App\Models\Team::count() }}</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-500">Contact Messages</h3>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">0</p>
+                </div>
+            </div>
+
+            {{-- Quick Actions --}}
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        {{-- These links are placeholders for now --}}
+                        <a href="#" class="bg-[#283593] hover:bg-[#1A237E] text-white font-bold py-3 px-4 rounded-lg text-center transition-colors">
+                            Manage Articles
+                        </a>
+                        <a href="#" class="bg-[#283593] hover:bg-[#1A237E] text-white font-bold py-3 px-4 rounded-lg text-center transition-colors">
+                            Manage Team Members
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
 @endsection
