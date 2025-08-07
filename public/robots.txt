@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /vendor/
+Disallow: /storage/
+
+Sitemap: https://danadyaksa08lawfirm.id/sitemap.xml
