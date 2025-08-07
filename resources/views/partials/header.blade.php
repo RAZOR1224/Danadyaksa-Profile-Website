@@ -55,17 +55,29 @@
 
             <div class="border-l h-6" :class="{'border-gray-300': scrolled, 'border-white/20': !scrolled}"></div>
 
+            {{-- === BAGIAN YANG DIPERBARUI === --}}
             @auth
-                <div class="flex items-center space-x-4">
-                    <a href="{{ url('/dashboard') }}" class="font-medium" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }">Dashboard</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="font-medium" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }">Logout</button>
-                    </form>
+                {{-- Dropdown untuk User yang Sudah Login --}}
+                <div class="relative" x-data="{ userMenuOpen: false }">
+                    <button @click="userMenuOpen = !userMenuOpen" class="flex items-center font-medium transition-colors" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }">
+                        <span>{{ Auth::user()->name }}</span>
+                        <i class="fas fa-chevron-down ml-2 text-xs transition-transform" :class="{ 'rotate-180': userMenuOpen }"></i>
+                    </button>
+                    <div x-show="userMenuOpen" @click.away="userMenuOpen = false" class="absolute top-full right-0 mt-2 bg-white rounded-md shadow-lg py-1 z-10 w-48" style="display: none;">
+                        <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                        <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                        <hr class="border-gray-200">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+                        </form>
+                    </div>
                 </div>
             @else
+                {{-- Link untuk Tamu (Guest) --}}
                 <a href="{{ route('login') }}" class="font-medium" :class="{ 'text-gray-700 hover:text-primary': scrolled, 'hover:text-gray-300': !scrolled }">Login</a>
             @endguest
+            {{-- === AKHIR BAGIAN YANG DIPERBARUI === --}}
         </div>
 
         {{-- Mobile Menu Button --}}
@@ -78,19 +90,21 @@
     {{-- Mobile Dropdown Menu --}}
     <div x-show="open" @click.away="open = false" class="md:hidden bg-white shadow-lg">
         <ul class="py-2 text-gray-700">
-            {{-- Your existing links... --}}
-            <li><a href="{{ route('home', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.home') }}</a></li>
-            <li><a href="{{ route('about', app()->getLocale()) }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('nav.about') }}</a></li>
-            {{-- ... etc --}}
+            {{-- ... link-link publik Anda ... --}}
 
-            {{-- Auth links for Mobile --}}
+            {{-- === BAGIAN YANG DIPERBARUI UNTUK MOBILE === --}}
             <hr class="my-2">
             @auth
-                <li><a href="{{ url('/dashboard') }}" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+                <li class="px-4 pt-2 pb-1">
+                    <div class="font-bold text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                </li>
+                <li><a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+                <li><a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type-="submit" class="w-full text-left block px-4 py-2 hover:bg-gray-100">Logout</button>
+                        <button type="submit" class="w-full text-left block px-4 py-2 hover:bg-gray-100">Logout</button>
                     </form>
                 </li>
             @else

@@ -3,51 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Contact;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormSubmitted;
 
 class PageController extends Controller
 {
-    // Method untuk halaman Beranda (statis)
     public function home(): View
     {
         return view('pages.home');
     }
 
-    // Method untuk halaman Tentang Kami (statis)
     public function about(): View
     {
         return view('pages.about');
     }
 
-    // Method untuk halaman Area Praktik (statis)
     public function services(): View
     {
         return view('pages.services');
     }
 
-    // Method untuk halaman Tim (dinamis)
     public function team(): View
     {
-        // Ambil semua data tim dari database
         $teamMembers = Team::orderBy('created_at', 'asc')->get();
-
-        // Kirim data ke view
-        return view('pages.team', [
-            'teamMembers' => $teamMembers
-        ]);
+        return view('pages.team', ['teamMembers' => $teamMembers]);
     }
 
-    // Method untuk halaman Artikel (dinamis)
     public function articles(): View
     {
-        // Ambil 6 artikel terbaru per halaman dan kirim ke view
         $articles = Article::latest()->paginate(6);
+        return view('pages.articles', ['articles' => $articles]);
+    }
+    
+    public function contact(): View
+    {
+        return view('pages.contact');
+    }
 
-        // Kirim data ke view
-        return view('pages.articles', [
-            'articles' => $articles
+    public function submitContactForm(Request $request)
+    {
+        // 1. Validasi input form
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
         ]);
+
+        // 2. Simpan data ke database
+        $contact = Contact::create($validated);
+
+        // 3. Kirim email notifikasi
+        Mail::to('danadyaksalawfirm@gmail.com')->send(new ContactFormSubmitted($contact));
+
+        // 4. Kembali ke halaman sebelumnya dengan pesan sukses
+        return back()->with('success', 'Thank you for your message! We will get back to you shortly.');
     }
 }

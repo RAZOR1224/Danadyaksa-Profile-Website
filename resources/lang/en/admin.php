@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'articles_manage' => 'Manage Articles',
+    'articles_create' => 'Create New Article',
+    'articles_edit' => 'Edit Article',
+    'articles_none' => 'No articles found.',
+    'team_manage' => 'Manage Team Members',
+    'team_add' => 'Add New Member',
+    'team_edit' => 'Edit Team Member',
+    'team_none' => 'No team members found.',
+    'inquiries_manage' => 'Contact Form Inquiries',
+    'inquiries_none' => 'No contact messages found.',
+
+    'btn_create' => 'Create New Article',
+    'btn_add_member' => 'Add New Member',
+    'btn_save' => 'Save Article',
+    'btn_update' => 'Update Article',
+    'btn_save_member' => 'Save Member',
+    'btn_update_member' => 'Update Member',
+    
+    'form_title' => 'Title',
+    'form_content' => 'Content',
+    'form_image' => 'Image',
+    'form_image_change' => 'Change Image (Optional)',
+    'form_image_current' => 'Current Image:',
+    'form_fullname' => 'Full Name',
+    'form_position' => 'Position',
+    'form_description' => 'Description',
+    'form_photo' => 'Photo',
+    'form_photo_current' => 'Current Photo:',
+
+    'table_image' => 'Image',
+    'table_title' => 'Title',
+    'table_name' => 'Name',
+    'table_position' => 'Position',
+    'table_author' => 'Author',
+    'table_email' => 'Email',
+    'table_message' => 'Message',
+    'table_created' => 'Created At',
+    'table_received' => 'Received At',
+    'table_actions' => 'Actions',
+
+    'action_edit' => 'Edit',
+    'action_delete' => 'Delete',
+    'action_cancel' => 'Cancel',
+    'delete_confirm' => 'Are you sure you want to delete this?',
+    
+    'success' => 'Success',
+    'success_create' => 'Data created successfully.',
+    'success_update' => 'Data updated successfully.',
+    'success_delete' => 'Data deleted successfully.',
+];

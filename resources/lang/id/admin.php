@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'articles_manage' => 'Kelola Artikel',
+    'articles_create' => 'Buat Artikel Baru',
+    'articles_edit' => 'Edit Artikel',
+    'articles_none' => 'Tidak ada artikel ditemukan.',
+    'team_manage' => 'Kelola Anggota Tim',
+    'team_add' => 'Tambah Anggota Baru',
+    'team_edit' => 'Edit Anggota Tim',
+    'team_none' => 'Tidak ada anggota tim ditemukan.',
+    'inquiries_manage' => 'Pesan Masuk Kontak',
+    'inquiries_none' => 'Tidak ada pesan kontak ditemukan.',
+
+    'btn_create' => 'Buat Artikel Baru',
+    'btn_add_member' => 'Tambah Anggota Baru',
+    'btn_save' => 'Simpan Artikel',
+    'btn_update' => 'Perbarui Artikel',
+    'btn_save_member' => 'Simpan Anggota',
+    'btn_update_member' => 'Perbarui Anggota',
+
+    'form_title' => 'Judul',
+    'form_content' => 'Konten',
+    'form_image' => 'Gambar',
+    'form_image_change' => 'Ganti Gambar (Opsional)',
+    'form_image_current' => 'Gambar Saat Ini:',
+    'form_fullname' => 'Nama Lengkap',
+    'form_position' => 'Posisi',
+    'form_description' => 'Deskripsi',
+    'form_photo' => 'Foto',
+    'form_photo_current' => 'Foto Saat Ini:',
+    
+    'table_image' => 'Gambar',
+    'table_title' => 'Judul',
+    'table_name' => 'Nama',
+    'table_position' => 'Posisi',
+    'table_author' => 'Penulis',
+    'table_email' => 'Email',
+    'table_message' => 'Pesan',
+    'table_created' => 'Dibuat Pada',
+    'table_received' => 'Diterima Pada',
+    'table_actions' => 'Aksi',
+
+    'action_edit' => 'Edit',
+    'action_delete' => 'Hapus',
+    'action_cancel' => 'Batal',
+    'delete_confirm' => 'Apakah Anda yakin ingin menghapus ini?',
+
+    'success' => 'Sukses',
+    'success_create' => 'Data berhasil dibuat.',
+    'success_update' => 'Data berhasil diperbarui.',
+    'success_delete' => 'Data berhasil dihapus.',
+];

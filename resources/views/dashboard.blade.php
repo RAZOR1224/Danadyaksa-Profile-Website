@@ -4,11 +4,7 @@
 
 @section('content')
 
-    {{-- 
-        This first section creates a header for the dashboard page.
-        The top padding (pt-32) is essential to push the content down below your fixed header.
-    --}}
-<section class="bg-primary pt-32 pb-10">
+    <section class="bg-primary pt-32 pb-10">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-bold text-white">
                 Dashboard
@@ -20,14 +16,12 @@
     <section class="pb-16 md:pb-24 bg-surface">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             
-            {{-- Welcome Message --}}
             <div class="bg-white overflow-hidden shadow-sm rounded-lg mb-6">
                 <div class="p-6 text-gray-900">
                     Welcome back, **{{ Auth::user()->name }}**!
                 </div>
             </div>
 
-            {{-- Stats Cards --}}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="text-lg font-semibold text-gray-500">Total Articles</h3>
@@ -39,7 +33,7 @@
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="text-lg font-semibold text-gray-500">Contact Messages</h3>
-                    <p class="text-3xl font-bold text-gray-900 mt-2">0</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">{{ \App\Models\Contact::count() }}</p>
                 </div>
             </div>
 
@@ -48,12 +42,15 @@
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h3>
                     <div class="flex flex-col md:flex-row gap-4">
-                        {{-- These links are placeholders for now --}}
-                        <a href="#" class="bg-[#283593] hover:bg-[#1A237E] text-white font-bold py-3 px-4 rounded-lg text-center transition-colors">
+                        <a href="{{ route('admin.articles.index') }}" class="bg-[#283593] hover:bg-[#1A237E] text-white font-bold py-3 px-4 rounded-lg text-center transition-colors">
                             Manage Articles
                         </a>
-                        <a href="#" class="bg-[#283593] hover:bg-[#1A237E] text-white font-bold py-3 px-4 rounded-lg text-center transition-colors">
+                        <a href="{{ route('admin.teams.index') }}" class="bg-[#283593] hover:bg-[#1A237E] text-white font-bold py-3 px-4 rounded-lg text-center transition-colors">
                             Manage Team Members
+                        </a>
+                        {{-- TAMBAHKAN TOMBOL BARU INI --}}
+                        <a href="{{ route('admin.contacts.index') }}" class="bg-[#283593] hover:bg-[#1A237E] text-white font-bold py-3 px-4 rounded-lg text-center transition-colors">
+                            View Inquiries
                         </a>
                     </div>
                 </div>

@@ -1,54 +1,47 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Article; // <-- Add this line
-use App\Models\Team;    // <-- Add this line
+
+// Main Page & Profile Controllers
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
+
+// Admin Controllers
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\TeamController;
 
 /*
 |--------------------------------------------------------------------------
 | Public Multilingual Routes
 |--------------------------------------------------------------------------
+| These routes handle the pages that are visible to all visitors.
 */
 
-// Redirect root URL to the default language URL
+// Redirect the root URL to the default language URL
 Route::get('/', function () {
     return redirect('/en');
 });
 
-// Group all public pages under a language prefix
+// Group all public pages under a language prefix (e.g., /en/about)
 Route::prefix('{locale}')->where(['locale' => '[a-z]{2}'])->group(function () {
-    
-    // Main page routes
-    Route::get('/', function () { return view('pages.home'); })->name('home');
-    Route::get('/about', function () { return view('pages.about'); })->name('about');
-    Route::get('/services', function () { return view('pages.services'); })->name('services');
-    Route::get('/contact', function () { return view('pages.contact'); })->name('contact');
 
-    // --- UPDATED DYNAMIC ROUTES ---
-    Route::get('/team', function () {
-        $teamMembers = Team::orderBy('created_at', 'asc')->get();
-        return view('pages.team', ['teamMembers' => $teamMembers]);
-    })->name('team');
+    // Page routes managed by PageController
+    Route::get('/', [PageController::class, 'home'])->name('home');
+    Route::get('/about', [PageController::class, 'about'])->name('about');
+    Route::get('/services', [PageController::class, 'services'])->name('services');
+    Route::get('/team', [PageController::class, 'team'])->name('team');
+    Route::get('/articles', [PageController::class, 'articles'])->name('articles');
+    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+    Route::post('/contact', [PageController::class, 'submitContactForm'])->name('contact.submit');
 
-    Route::get('/articles', function () {
-        $articles = Article::latest()->paginate(6);
-        return view('pages.articles', ['articles' => $articles]);
-    })->name('articles');
-    // ----------------------------
-
-    // Routes for the dropdown
-    Route::get('/business-intelligence', function() { 
-        return 'Business Intelligence Page - Coming Soon!'; 
+    // Routes for the "Miscellaneous" dropdown
+    Route::get('/business-intelligence', function() {
+        return 'Business Intelligence Page - Coming Soon!';
     })->name('business-intelligence');
-    Route::get('/service-estimation-time', function() { 
-        return 'Service Estimation Time Page - Coming Soon!'; 
+    Route::get('/service-estimation-time', function() {
+        return 'Service Estimation Time Page - Coming Soon!';
     })->name('service-estimation-time');
-
-    // Handle the contact form submission
-    Route::post('/contact', function () {
-        return back()->with('success', 'Thank you for your message!');
-    })->name('contact.submit');
 });
 
 
@@ -56,6 +49,7 @@ Route::prefix('{locale}')->where(['locale' => '[a-z]{2}'])->group(function () {
 |--------------------------------------------------------------------------
 | Breeze Authentication & Dashboard Routes
 |--------------------------------------------------------------------------
+| These routes are for user login, registration, and the main dashboard.
 */
 
 Route::get('/dashboard', function () {
@@ -68,4 +62,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| Admin CRUD Routes
+|--------------------------------------------------------------------------
+| These routes are for managing content from the admin dashboard.
+*/
+
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->name('admin.')->group(function () {
+    Route::resource('articles', ArticleController::class);
+    Route::resource('teams', TeamController::class);
+    // UPDATED: Menggunakan resource route untuk index dan destroy
+    Route::resource('contacts', ContactController::class)->only(['index', 'destroy']);
+});
+
+// Loads the authentication routes from Breeze (login, logout, register, etc.)
 require __DIR__.'/auth.php';
