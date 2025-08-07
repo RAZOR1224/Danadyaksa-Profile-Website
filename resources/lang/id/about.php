@@ -20,4 +20,5 @@ return [
     'section_2_p1'    => 'Para pendiri Firma Hukum Danadyaksa mendirikan institusi ini dengan visi yang mendalam dan berwawasan ke depan. Ambisi utama mereka adalah untuk menciptakan lebih dari sekadar firma hukum, yaitu sebuah "kawah candradimuka"—tempat di mana pengetahuan hukum ditempa, diuji, dan disempurnakan.',
     'section_2_p2'    => 'Prinsip pemandu ini membentuk komitmen kami untuk membimbing generasi profesional hukum berikutnya. Mereka membayangkan sebuah tempat yang menyediakan peluang bagi para pengacara muda untuk berkembang, yang pada akhirnya memberdayakan mereka untuk berpraktik secara mandiri atau menjadi ahli hukum korporat di perusahaan bergengsi lainnya. Dedikasi terhadap pendidikan dan pengembangan profesional ini tetap menjadi inti identitas kami.',
     'img_alt_2'       => 'Para Pendiri Firma Hukum Danadyaksa 08',
+    'meta_description' => 'Learn about the history, vision, and dedicated team at Danadyaksa 08 Law Firm. Discover our commitment to providing expert legal services with integrity in Banjarmasin.',
 ];

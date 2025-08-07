@@ -2,6 +2,8 @@
 @extends('layouts.app')
 
 @section('title', __('about.page_title'))
+{{-- ADDED --}}
+@section('description', __('about.meta_description'))
 
 @section('content')
     {{-- Header Section --}}

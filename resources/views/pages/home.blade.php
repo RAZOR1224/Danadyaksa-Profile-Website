@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Home - Corporate Legal Solutions')
+@section('title', 'Expert Legal Services in Banjarmasin | Danadyaksa 08 Law Firm')
+@section('description', 'Danadyaksa 08 Law Firm offers expert legal consultation, litigation, and corporate legal services in Banjarmasin, South Kalimantan. Contact our professional team today.')
+
 
 @section('content')
 

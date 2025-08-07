@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Danadyaksa 08 Law Firm') }} - @yield('title', 'Welcome')</title>
+    {{-- CHANGED: Improved title structure for SEO and added a default title. --}}
+    <title>@yield('title', 'Professional Legal Services') | {{ config('app.name', 'Danadyaksa 08 Law Firm') }}</title>
+
+    {{-- ADDED: Dynamic meta description for SEO. This is very important. --}}
+    <meta name="description" content="@yield('description', 'Danadyaksa 08 Law Firm offers expert legal consultation, litigation, and corporate legal services in Banjarmasin, South Kalimantan. Contact our professional team today.')">
 
     {{-- Favicon Links --}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
@@ -31,8 +35,6 @@
         @include('partials.header')
     </div>
     
-    {{-- This <main> tag is now clean. It has NO container or padding. --}}
-    {{-- This allows your page content from home.blade.php to be full-width. --}}
     <main>
         @yield('content')
     </main>

@@ -11,17 +11,30 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\TeamController;
 
+// Sitemap Controller - NEW
+use App\Http\Controllers\SitemapController;
+
 /*
 |--------------------------------------------------------------------------
-| Public Multilingual Routes
+| Public Routes
 |--------------------------------------------------------------------------
-| These routes handle the pages that are visible to all visitors.
 */
 
 // Redirect the root URL to the default language URL
 Route::get('/', function () {
     return redirect('/en');
 });
+
+// Sitemap Route (does not need a language prefix) - NEW
+Route::get('sitemap.xml', [SitemapController::class, 'generate'])->name('sitemap');
+
+
+/*
+|--------------------------------------------------------------------------
+| Public Multilingual Routes
+|--------------------------------------------------------------------------
+| These routes handle the pages that are visible to all visitors.
+*/
 
 // Group all public pages under a language prefix (e.g., /en/about)
 Route::prefix('{locale}')->where(['locale' => '[a-z]{2}'])->group(function () {
