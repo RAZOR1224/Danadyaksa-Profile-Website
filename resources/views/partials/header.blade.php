@@ -12,7 +12,7 @@
         
         {{-- Brand/Logo Section --}}
         <a href="{{ route('home', app()->getLocale()) }}" class="flex items-center">
-            <img src="{{ asset('images/logo.png') }}" alt="Danadyaksa 08 Law Firm Logo" class="h-10 mr-3">
+            <img src="{{ asset('storage/images/logo.png') }}" alt="Danadyaksa 08 Law Firm Logo" class="h-10 mr-3">
             <span class="text-2xl font-bold" :class="{ 'text-gray-900': scrolled, 'text-white': !scrolled }">
                 DANADYAKSA <span class="text-accent">08</span>
             </span>

@@ -10,7 +10,7 @@
     <title>@yield('title', 'Professional Legal Services') | {{ config('app.name', 'Danadyaksa 08 Law Firm') }}</title>
 
     {{-- ADDED: Dynamic meta description for SEO. This is very important. --}}
-    <meta name="description" content="@yield('description', 'Danadyaksa 08 Law Firm offers expert legal consultation, litigation, and corporate legal services in Banjarmasin, South Kalimantan. Contact our professional team today.')">
+    <meta name="description" content="@yield('description', 'Danadyaksa 08 Law Firm offers expert legal consultation, litigation, and corporate legal services in Pontianak, West Kalimantan. Contact our professional team today.')">
 
     {{-- Favicon Links --}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">

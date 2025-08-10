@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Expert Legal Services in Banjarmasin | Danadyaksa 08 Law Firm')
-@section('description', 'Danadyaksa 08 Law Firm offers expert legal consultation, litigation, and corporate legal services in Banjarmasin, South Kalimantan. Contact our professional team today.')
+@section('title', 'Expert Lawyers in Pontianak | Danadyaksa 08 Law Firm')
+@section('description', 'Need a trusted lawyer (pengacara) in Pontianak? Danadyaksa 08 Law Firm in West Kalimantan offers professional litigation and corporate legal services.')
 
 
 @section('content')

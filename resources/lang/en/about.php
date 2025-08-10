@@ -20,5 +20,5 @@ return [
     'section_2_p1'    => 'The founders of Danadyaksa Law Firm established this institution with a profound and forward-thinking vision. Their primary ambition was to create more than just a law firm, but a "kawah candradimuka"—a crucible where legal knowledge is forged, tested, and perfected.',
     'section_2_p2'    => 'This guiding principle shapes our commitment to mentoring the next generation of legal professionals. They envisioned a place that provides opportunities for young lawyers to grow, eventually empowering them to practice independently or excel as corporate legal experts in other prestigious companies. This dedication to education and professional development remains at the core of our identity.',
     'img_alt_2'       => 'Founders of Danadyaksa 08 Law Firm',
-    'meta_description' => 'Learn about the history, vision, and dedicated team at Danadyaksa 08 Law Firm. Discover our commitment to providing expert legal services with integrity in Banjarmasin.',
+    'meta_description' => 'Learn about the history, vision, and dedicated team at Danadyaksa 08 Law Firm. Discover our commitment to providing expert legal services with integrity in Pontianak.',
 ];
