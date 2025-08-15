@@ -7,10 +7,11 @@
 @section('content')
 
     {{-- 1. Hero Section --}}
-    <section id="home" class="relative text-white h-screen flex items-center text-left px-8 md:px-16 lg:px-24">
+    {{-- SESUDAH --}}
+    <section id="home" class="pt-24 relative text-white h-screen flex items-center text-left px-8 md:px-16 lg:px-24">
         <img src="{{ asset('images/hero-background.png') }}" alt="A professional legal setting or cityscape" class="absolute inset-0 w-full h-full object-cover z-0">
         <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
-        
+
         <div class="relative z-10 max-w-4xl animate-fade-in-up">
             <p class="text-lg font-semibold tracking-widest text-gray-300 mb-2">{{ __('home.hero_greeting') }}</p>
             <h1 class="text-5xl md:text-6xl font-bold mb-4">{{ __('home.hero_title') }}</h1>
@@ -50,7 +51,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('home.services_title') }}</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">{{ __('home.services_subtitle') }}</p>
             </div>
-            
+
             <div x-data="{ openAccordion: 1 }" class="max-w-3xl mx-auto">
                 {{-- Item 1 --}}
                 <div class="border-b">
@@ -108,7 +109,7 @@
             </div>
         </div>
     </section>
-    
+
     {{-- 4. Why Choose Us Section --}}
     <section class="bg-white py-16 md:py-24">
         <div class="container mx-auto px-4">
@@ -132,7 +133,7 @@
                     <p class="text-gray-600">{{ __('home.why_2_desc') }}</p>
                 </div>
                 <div class="text-center p-4">
-                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-surface text-primary mx-auto mb-4">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-surface text-primary mx-auto mb-4">
                         <i class="fas fa-handshake text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">{{ __('home.why_3_title') }}</h3>
@@ -146,7 +147,7 @@
 <section class="bg-surface py-12">
     <div class="container mx-auto">
         <h3 class="text-center text-2xl font-bold text-gray-800 mb-12 px-4">{{ __('home.trusted_title') }}</h3>
-        
+
         <div class="swiper logo-swiper overflow-hidden">
             <div class="swiper-wrapper items-center">
 
@@ -166,7 +167,7 @@
                 <div class="swiper-slide h-24 flex justify-center items-center">
                     <img src="{{ asset('images/logo-placeholder-5.png') }}" alt="Client Logo 5" class="max-h-full max-w-full object-contain">
                 </div>
-                
+
                 {{-- Duplicated slides for a seamless loop --}}
                 <div class="swiper-slide h-24 flex justify-center items-center">
                     <img src="{{ asset('images/logo-placeholder-1.png') }}" alt="Client Logo 1" class="max-h-full max-w-full object-contain">
@@ -242,7 +243,7 @@
 @push('scripts')
     {{-- This script enables the smooth collapse/expand animation for the accordion --}}
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    
+
     {{-- CORRECTED SCRIPT for the logo carousel --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -264,13 +265,13 @@
                 breakpoints: {
                     // when window width is >= 640px
                     640: {
-                      slidesPerView: 4,
-                      spaceBetween: 40
+                        slidesPerView: 4,
+                        spaceBetween: 40
                     },
                     // when window width is >= 1024px
                     1024: {
-                      slidesPerView: 5,
-                      spaceBetween: 50
+                        slidesPerView: 5,
+                        spaceBetween: 50
                     }
                 }
             });
