@@ -1,6 +1,5 @@
 {{-- /resources/views/pages/predict_form.blade.php --}}
 
-{{-- CHANGED: Mengganti layout component <x-app-layout> dengan @extends agar sesuai dengan struktur proyek teman Anda --}}
 @extends('layouts.app')
 
 {{-- ADDED: Menambahkan title dan description untuk konsistensi dan SEO, sesuai layout referensi --}}
