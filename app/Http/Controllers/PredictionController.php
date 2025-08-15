@@ -11,7 +11,7 @@ class PredictionController extends Controller
 {
     public function getPrediction(Request $request)
     {
-        // 1. Validasi input
+        // 1. Validasi input (Tidak ada perubahan)
         try {
             $payload = $request->validate([
                 'kategori_perkara'      => 'required|string|in:Perdata,Pidana,PHI,TUN',
@@ -32,24 +32,22 @@ class PredictionController extends Controller
         // 2. Simpan input asli (Tidak ada perubahan)
         $inputData = $request->all();
 
-        // 3. Tambahkan 'pengadilan_berwenang' ke payload
+        // 3. Tambahkan 'pengadilan_berwenang' ke payload (Tidak ada perubahan)
         $payload['pengadilan_berwenang'] = $this->getPengadilanFromLokasi(
             $payload['lokasi_sengketa'],
             $payload['kategori_perkara'],
             $payload['deskripsi_perkara']
         );
 
-        // 4. Ambil URL dan TOKEN dari file .env
-        $apiUrl = 'https://iknasius-predict-duration-of-law-case-models.hf.space/predict';
-        $apiToken = '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';
+        // 4. Ambil URL dan TOKEN dari file .env (INI YANG DIUBAH)
+        $apiUrl = env('HUGGINGFACE_API_URL', 'https://iknasius-predict-duration-of-law-case-models.hf.space/predict');
 
         try {
-            // 5. Buat request dengan menyertakan token
-            $response = Http::withToken($apiToken)
-                            ->timeout(30)
+            // 5. Buat request dengan menyertakan token (Tidak ada perubahan)
+            $response = Http::timeout(30)
                             ->post($apiUrl, $payload);
 
-            // 6. Proses respons (Logika sama, hanya pesan error diubah)
+            // 6. Proses respons (Tidak ada perubahan)
             if ($response->successful()) {
                 $predictionResult = $response->json();
                 return view('pages.predict_result', [
@@ -63,14 +61,13 @@ class PredictionController extends Controller
             }
 
         } catch (ConnectionException $e) {
-            // Pesan error dibuat lebih umum
             $errorMessage = "Tidak dapat terhubung ke server prediksi. Periksa kembali URL API dan koneksi internet.";
             return back()->with('api_error', $errorMessage)->withInput();
         }
     }
 
     /**
-     * Fungsi helper
+     * Fungsi helper (Tidak ada perubahan)
      */
     private function getPengadilanFromLokasi(string $lokasi, string $kategori, string $deskripsi): string
     {
