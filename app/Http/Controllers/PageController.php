@@ -38,10 +38,15 @@ class PageController extends Controller
         $articles = Article::latest()->paginate(6);
         return view('pages.articles', ['articles' => $articles]);
     }
-    
+
     public function contact(): View
     {
         return view('pages.contact');
+    }
+
+    public function showPredictionForm(): View
+    {
+        return view('pages.predict_form');
     }
 
     public function submitContactForm(Request $request)

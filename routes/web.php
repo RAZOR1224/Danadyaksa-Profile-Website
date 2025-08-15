@@ -14,6 +14,9 @@ use App\Http\Controllers\Admin\TeamController;
 // Sitemap Controller - NEW
 use App\Http\Controllers\SitemapController;
 
+//Prediction Controllers
+use App\Http\Controllers\PredictionController;
+
 /*
 |--------------------------------------------------------------------------
 | Public Routes
@@ -52,9 +55,12 @@ Route::prefix('{locale}')->where(['locale' => '[a-z]{2}'])->group(function () {
     Route::get('/business-intelligence', function() {
         return 'Business Intelligence Page - Coming Soon!';
     })->name('business-intelligence');
-    Route::get('/service-estimation-time', function() {
-        return 'Service Estimation Time Page - Coming Soon!';
-    })->name('service-estimation-time');
+
+    // CHANGED: The GET route now points to PageController to show the form.
+    Route::get('/service-estimation-time', [PageController::class, 'showPredictionForm'])->name('service-estimation-time');
+
+    // The POST route still points to PredictionController to handle the logic.
+    Route::post('/service-estimation-time', [PredictionController::class, 'getPrediction'])->name('predict.submit');
 });
 
 
